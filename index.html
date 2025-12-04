@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! ACCESS DENIED !!!</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Dark, aggressive terminal theme */
+        body {
+            background-color: #000000;
+            color: #00FF00; /* Default green matrix text */
+            font-family: 'VT323', monospace;
+            overflow: hidden;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Large, central warning */
+        .hacked-container {
+            text-align: center;
+            padding: 30px;
+            border: 5px dashed #FF0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        h1 {
+            font-size: 8vw; /* Responsive font size */
+            color: #FF0000; /* Red for alert */
+            margin: 0;
+            line-height: 1;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
+
+        h2 {
+            font-size: 3vw;
+            color: #00FF00;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 2vw;
+            color: #FFFF00; /* Yellow for urgency */
+            margin-top: 20px;
+        }
+
+        .blinking {
+            animation: blinker 0.5s step-end infinite;
+        }
+
+        .data-stream {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 1.5vw;
+            line-height: 1.2;
+            white-space: pre;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 50px rgba(255, 0, 0, 0.5); }
+            50% { transform: scale(1.02); box-shadow: 0 0 70px rgba(255, 0, 0, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 50px rgba(255, 0, 0, 0.5); }
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 15vw; }
+            h2 { font-size: 5vw; }
+            p { font-size: 3vw; }
+            .data-stream { font-size: 2vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="data-stream" id="data-stream"></div>
+
+    <div class="hacked-container">
+        <h1 class="blinking">SYSTEM BREACH</h1>
+        <h2><span style="color: #FF0000;">[ACCESS TERMINATED]</span></h2>
+        <p>CONGRATULATIONS. YOU JUST SCANNED A MALICIOUS QR CODE.</p>
+        <p style="color: #00FF00; font-size: 1.8vw;">// DEMONSTRATION COMPLETE //</p>
+        <p style="font-size: 1.5vw;">Trust requires verification. In a world of AI-generated content, <span class="blinking" style="color: #FF0000;">never trust the source.</span></p>
+    </div>
+
+    <script>
+        // Simulate Matrix Data Stream
+        const stream = document.getElementById('data-stream');
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+{}|:"<>?';
+        const streamLength = 2000;
+        let streamContent = '';
+
+        for (let i = 0; i < streamLength; i++) {
+            streamContent += chars.charAt(Math.floor(Math.random() * chars.length)) + (i % 80 === 79 ? '\n' : ' ');
+        }
+        stream.textContent = streamContent;
+
+        // Simple typing effect for realism
+        const message = "SYSTEM BREACH... ATTEMPTING TO RECOVER... FAILED. LOGGING DATA TRANSFER... INITIATING COUNTERMEASURES...";
+        let index = 0;
+        const terminalText = document.createElement('div');
+        terminalText.style.color = '#00FF00';
+        terminalText.style.fontSize = '1.5vw';
+        terminalText.style.marginTop = '40px';
+        document.body.appendChild(terminalText);
+
+        function typeWriter() {
+            if (index < message.length) {
+                terminalText.innerHTML += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50);
+            } else {
+                terminalText.innerHTML += ' <span class="blinking">|</span>';
+            }
+        }
+        typeWriter();
+
+    </script>
+</body>
+</html>
